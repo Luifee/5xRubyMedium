@@ -1,0 +1,30 @@
+<% if memo.errors.any? %>
+   <div class="notification is-danger">
+    <%= memo.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+
+
+<%= form_for(memo) do |form| %>
+  <div class="field">
+    <%= form.label :title, "標題" %>
+    <%= form.text_field :title, class: 'input' %>
+  </div>
+  <div class="field">
+    <%= form.label :cover_image, "封面圖" %>
+    <%= cover_image(memo, 240, 180) %>
+    <div class="file">
+      <%= form.file_field :cover_image, class: 'button is-link' %>
+    </div>
+  </div>
+  <div class="field">
+    <%= form.label :content, "內文" %>
+    <%= form.text_area :content, class: 'textarea' %>
+  </div>
+  <div class="field">
+    <%= form.submit "儲存草稿", name: 'save_as_draft', class: 'button is-light' %>
+    <%= form.submit "分享筆記", name: 'publish', class: 'button is-info' if memo.may_publish? %>
+    <%= form.submit "撤回筆記", name: 'unpublish', class: 'button is-danger', data: {confirm: "確定撤回?"} if memo.may_unpublish? %>
+  </div>
+  <% end %>
+

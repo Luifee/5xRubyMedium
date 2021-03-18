@@ -1,0 +1,20 @@
+.trend {
+  .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    .memo {
+      width: 340px;
+      margin: 5px;
+      .media-right {
+        width: 100px;
+      }
+    }
+  }
+}
+
+.latest {
+  max-width: 480px;
+  .media-right {
+    width: 180px;
+  }
+}

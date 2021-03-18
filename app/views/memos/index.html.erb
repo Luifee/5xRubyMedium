@@ -1,0 +1,19 @@
+<h1 class="title is-3">筆記簿</h1>
+<% @memos.each do |memo| %>
+  <div class="content columns">
+    <div class="column is-two-thirds">
+      <h2 class="title is-4">
+        <%= link_to memo.title, edit_memo_path(memo), class: 'has-text-grey-darker' %>
+        <%= content_tag :span, "已發布", class: 'tag is-primary is-light' if memo.published? %>
+      </h2>
+      <p><%= memo.content %></p>
+      <p>最後編輯於：<%= time_ago_in_words(memo.updated_at) %>前
+      <%= link_to "編輯", edit_memo_path(memo), class: 'button is-text is-small' %>
+      <%= link_to "刪除", memo_path(memo), method: 'delete', class: 'button is-text is-small is-danger', data: {confirm: "確認刪除?"} %> </p>
+    </div>
+    <div class="column is-one-third">
+      <%= cover_image(memo) %>
+    </div>
+    <hr />
+  </div>
+<% end %>

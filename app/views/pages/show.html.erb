@@ -1,0 +1,47 @@
+<section class="columns has-text-centered story-content">
+  <section class="column is-offset-3 is-6">
+    <h1 class="title"><%= @memo.title %></h1>
+
+    <span class="profile">
+      <%= image_tag @memo.user.avatar.variant(resize: "50x50"), class: "avatar" if @memo.user.avatar.attached? %> 
+      <span class="username"><%= @memo.user.username %></span>
+      <a href="#" class="follow-button">Follow</a>
+    </span>
+
+    <article class="content">
+      <%= image_tag @memo.cover_image.variant(resize: '800x600'), class: 'cover_image' if @memo.cover_image.attached? %>
+      <p>
+      <%= simple_format(@memo.content) %>
+      </p>
+      
+      <footer>
+        拍手 108
+      </footer>
+    </article>
+    <hr>
+    <section class="comments">
+      <h2>留言</h2>
+
+      <section class="comment-editor">
+        <form action="" method="post">
+          <textarea name="" id="" rows="8" cols="40" class="textarea is-small"></textarea>
+          <button type="submit" class="button is-primary is-fullwidth">送出</button>
+        </form>
+      </section>
+
+      <section>
+        <article class="comment">
+          <span class="profile">
+            <%= image_tag comment.user.avatar.variant(resize: '50x50'), class: 'avatar' if comment.user.avatar.attached? %>
+	    <span class="username"><%= comment_user.username %></span>
+          </span>
+	  Comment?
+        </article>
+
+        <article class="comment">
+		other comments
+        </article>
+      </section>
+    </section>
+  </section>
+</section>

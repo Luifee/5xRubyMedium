@@ -1,0 +1,11 @@
+<h1 class="title">修改筆記</h1>
+
+<% if @memo.errors.any? %>
+   <ul>
+    <% @memo.errors.full_messages.each do |message| %>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render "content", memo: @memo %>
+
