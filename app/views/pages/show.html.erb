@@ -22,25 +22,10 @@
     <section class="comments">
       <h2>留言</h2>
 
-      <section class="comment-editor">
-        <form action="" method="post">
-          <textarea name="" id="" rows="8" cols="40" class="textarea is-small"></textarea>
-          <button type="submit" class="button is-primary is-fullwidth">送出</button>
-        </form>
-      </section>
+      <%= render "comment_area", memo: @memo, comment: @comment %>
 
-      <section>
-        <article class="comment">
-          <span class="profile">
-            <%= image_tag comment.user.avatar.variant(resize: '50x50'), class: 'avatar' if comment.user.avatar.attached? %>
-	    <span class="username"><%= comment_user.username %></span>
-          </span>
-	  Comment?
-        </article>
-
-        <article class="comment">
-		other comments
-        </article>
+      <section class="comment-list">
+        <%= render partial: "comment", collection: @comments %>
       </section>
     </section>
   </section>

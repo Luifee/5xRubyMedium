@@ -1,0 +1,4 @@
+var list = document.querySelector('section.comment-list')
+var renderContent = "<%= j(render 'page/comment', comment: @comment)%>"
+
+list.innerHTML = renderContent + list.innerHTML

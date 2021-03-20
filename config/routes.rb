@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :memos
+  resources :memos do
+    resources :comments, only: [:create]
+  end
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }

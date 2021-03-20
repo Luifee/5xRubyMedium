@@ -7,7 +7,8 @@ class PagesController < ApplicationController
   end
 
   def show
-    @memo = Memo.friendly.find(params[:memo_id])
+    @comment = @memo.comments.new
+    @comments = @memo.comments.order(id: :desc)
   end
 
   def user
