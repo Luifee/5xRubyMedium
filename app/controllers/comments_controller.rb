@@ -6,10 +6,8 @@ class CommentsController < ApplicationController
     @comment = @memo.comments.new(comment_params)
     @comment.user = current_user
 
-    if @comment.save
-      render js: "alert('error');"
-    else
-      render js: "alert('error');"
+    unless @comment.save
+      render js: "alert('Error!');"
     end
   end
 

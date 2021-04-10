@@ -1,11 +1,20 @@
-<section class="columns has-text-centered story-content">
+<section class="columns has-text-centered memo-content">
   <section class="column is-offset-3 is-6">
     <h1 class="title"><%= @memo.title %></h1>
 
-    <span class="profile">
+    <span class="profile" data-controller="user">
       <%= image_tag @memo.user.avatar.variant(resize: "50x50"), class: "avatar" if @memo.user.avatar.attached? %> 
       <span class="username"><%= @memo.user.username %></span>
-      <a href="#" class="follow-button">Follow</a>
+      <%= link_to '#', class: 'follow-button button', data: {action: 'user#follow', user: @memo.user.id, target: 'user.followButton'} do %>
+        <%= (user_signed_in? && current_user.follow?(@memo.user))? 'Followed' : 'Follow' %>
+      <% end %>
+      <%= link_to '#', class: 'clip-button button', data: {action: 'user#clip', slug: @memo.slug} do %>
+        <% if user_signed_in? && current_user.clip?(@memo) %>
+          <i class="fas fa-bookmark" data-user-target="clip"></i>
+        <% else %>
+          <i class="far fa-bookmark" data-user-target="clip"></i>
+        <% end %>
+      <% end %>
     </span>
 
     <article class="content">
@@ -14,8 +23,10 @@
       <%= simple_format(@memo.content) %>
       </p>
       
-      <footer>
-        拍手 108
+      <footer data-controller="memo">
+        <%= link_to "#", class: 'clapButton button is-size-6 is-warning is-light', data: { action: 'memo#addClap', slug: @memo.slug} do %>
+	<i class="far fa-thumbs-up"></i><span class="clapCount" data-memo-target="clapCount"><%= @memo.clap %></span>
+	<% end %>
       </footer>
     </article>
     <hr>

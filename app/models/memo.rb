@@ -6,12 +6,16 @@ class Memo < ApplicationRecord
 
   acts_as_paranoid
 
+  # relation ships
   belongs_to :user
   has_one_attached :cover_image
   has_many :comments
+  has_many :clips
 
+  # validations
   validates :title, presence: true
 
+  # scopes
   scope :published_memos, -> {published.with_attached_cover_image.order(created_at: :desc).includes(:user)}
 
   def normalize_friendly_id(input)

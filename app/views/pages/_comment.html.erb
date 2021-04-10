@@ -3,5 +3,6 @@
     <%= image_tag comment.user.avatar.variant(resize: '50x50'), class: 'avatar' if comment.user.avatar.attached? %>
     <span class="username"><%= comment.user.username %></span>
   </span>
-  <%= simple_format(comment.content) %>
+  <%= simple_format(comment.content, class: 'content') %>
+  <p class="created_at is-size-7 has-text-right"><%= comment.created_at.to_date %></p>
 </article>

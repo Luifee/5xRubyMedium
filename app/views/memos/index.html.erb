@@ -6,7 +6,7 @@
         <%= link_to memo.title, edit_memo_path(memo), class: 'has-text-grey-darker' %>
         <%= content_tag :span, "已發布", class: 'tag is-primary is-light' if memo.published? %>
       </h2>
-      <p><%= memo.content %></p>
+      <p><%= strip_tags(memo.content).truncate(200) %></p>
       <p>最後編輯於：<%= time_ago_in_words(memo.updated_at) %>前
       <%= link_to "編輯", edit_memo_path(memo), class: 'button is-text is-small' %>
       <%= link_to "刪除", memo_path(memo), method: 'delete', class: 'button is-text is-small is-danger', data: {confirm: "確認刪除?"} %> </p>

@@ -1,10 +1,13 @@
 <div class="container is-fluid">
-  <p class="title is-1">Hello World!</p>
-  <p class="content is-large">Coming and writing.</p>
-  <%= link_to "註冊帳號", new_user_registration_path, class: 'button is-primary' %>
-  <hr />
+  <% if user_signed_in? %>
+  <% else %>
+    <p class="title is-1">Hello World!</p>
+    <p class="content is-large">Coming and writing.</p>
+    <%= link_to "註冊帳號", new_user_registration_path, class: 'button is-primary' %>
+    <hr />
+  <% end %>
   <section class="trend">
-    <p class="title is-6">TRENDING ON MY MEDIUM</p>
+    <p class="title is-5">TRENDING ON MY MEDIUM</p>
     <div class="wrap">
       <% @memos.each do |memo| %>
       <div class="memo">

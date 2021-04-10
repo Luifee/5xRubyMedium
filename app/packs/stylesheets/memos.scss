@@ -1,10 +1,15 @@
+@import './editor';
+
 form {
   img.cover-image {
     display: block;
   }
 }
 
-.story-content {
+form.memo-editor {
+  margin-bottom: 2em;
+}
+.memo-content {
   // 作者
   .profile {
     display: flex;
@@ -17,6 +22,10 @@ form {
     .username {
       padding: 3px;
       margin-left: 1em;
+    }
+
+    .button {
+      margin-right: 10px;
     }
 
     .follow-button {
@@ -42,6 +51,10 @@ form {
     img.cover-image {
       max-width: 100%;
       height: auto;
+    }
+
+    i {
+      margin-right: 10px;
     }
   }
 
@@ -73,7 +86,7 @@ form {
       .profile {
 	margin: 10px;
       }
-      p {
+      .content {
         color: #393;
       }
     }
