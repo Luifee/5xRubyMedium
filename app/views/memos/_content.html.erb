@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_pack_tag 'editor' %>
+<% end %>
+
 <% if memo.errors.any? %>
    <div class="notification is-danger">
     <%= memo.errors.full_messages.to_sentence %>
@@ -31,5 +35,3 @@
       <%= form.submit "撤回筆記", name: 'unpublish', class: 'button is-danger', data: {confirm: "確定撤回?"} if memo.may_unpublish? %>
   </div>
 <% end %>
-
-<%= javascript_pack_tag 'editor' %>
