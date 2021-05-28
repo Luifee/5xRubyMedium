@@ -12,7 +12,7 @@ import 'froala-editor/js/plugins/quote.min.js'
 import 'froala-editor/js/plugins/video.min.js'
 import 'froala-editor/js/plugins/word_paste.min.js'
 
-document.addEventListener('DOMContentLoaded', function(event) {
+document.addEventListener('turbolinks:load', function(event) {
   let editor = new FroalaEditor('#memo_content', {
     language: 'zh_tw', 
     spellcheck: true, 
