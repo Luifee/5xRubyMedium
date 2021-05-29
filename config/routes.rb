@@ -24,6 +24,13 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
 
+  resources :users, only: [] do
+    collection do
+      get :pricing
+      get :payment
+    end
+  end
+
   get '@:username/:memo_id', to: 'pages#show', as: 'memo_page'
   get '@:username', to: 'pages#user', as: 'user_page'
   root 'pages#index'
