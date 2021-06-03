@@ -1,3 +1,7 @@
+<% content_for :head do %>
+<script src="https://js.braintreegateway.com/web/dropin/1.29.0/js/dropin.min.js"></script>
+<% end %>
+
 <div class="box">
   <article class="media">
     <div class="media-left">
@@ -7,7 +11,7 @@
     </div>
     <div class="media-content">
       <div class="content">
-        <strong></span>
+        <strong><%= @payment_type %> (USD <%= @fee %>)</span>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
         </p>
@@ -15,3 +19,23 @@
     </div>
   </article>
 </div>
+
+<div id="dropin-container"></div>
+<button id="submit-button">選擇交易方式</button>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function(event) {
+    var button = document.querySelector('#submit-button');
+
+      braintree.dropin.create({
+        authorization: '<%= @client_token %>',
+        container: '#dropin-container',
+        locale: 'zh_TW'
+      }, function (createErr, instance) {
+        button.addEventListener('click', function () {
+          instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+            // Submit payload.nonce to your server
+        });
+      });
+    });
+  });
+</script>

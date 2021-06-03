@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.7'
   gem 'friendly_id', '~> 5.4', '>= 5.4.2'
   gem 'babosa', '~> 1.0', '>= 1.0.4'
   gem 'paranoia', '~> 2.4', '>= 2.4.3'
+  gem 'figaro', '~> 1.2'
+  gem 'braintree', '~> 4.1'
+  gem 'libxml-ruby', '~> 3.2', '>= 3.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
