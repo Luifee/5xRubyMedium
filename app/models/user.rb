@@ -6,7 +6,7 @@ class User < ApplicationRecord
   enum role: {
     user: 0,
     vip_user: 1,
-    platium_user: 2,
+    platinum_user: 2,
     admin: 3
   }
   # relationships
@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   # instance method
   def paid_user?
-    vip_user? or platium_user?
+    vip_user? or platinum_user?
   end
 
   def follow?(user)

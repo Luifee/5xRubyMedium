@@ -1,5 +1,5 @@
 <% content_for :head do %>
-<script src="https://js.braintreegateway.com/web/dropin/1.29.0/js/dropin.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/dropin/1.29.0/js/dropin.min.js"></script>
 <% end %>
 
 <div class="box">
@@ -13,27 +13,37 @@
       <div class="content">
         <strong><%= @payment_type %> (USD <%= @fee %>)</span>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+          Lorem piko dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
         </p>
       </div>
+      <%= form_with url: pay_users_path(type: params[:type]), id: 'pay_form', method: 'post', local: true do |form| %>
+        <%= form.hidden_field :payment_nonce %>
+        <div id="dropin-container"></div>
+	<%= link_to "重新選擇方案", pricing_users_path, class: 'button is-light' %>
+        <button id="submit-button" class='button is-danger'>確認付費資訊</button>
+      <% end %>
     </div>
   </article>
 </div>
 
-<div id="dropin-container"></div>
-<button id="submit-button">選擇交易方式</button>
 <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function(event) {
+  document.addEventListener('turbolinks:load', function(event) {
     var button = document.querySelector('#submit-button');
-
+    let nonce_field = document.querySelector('input[name="payment_nonce"]');
+    let form = document.querySelector('#pay_form');
+   
       braintree.dropin.create({
         authorization: '<%= @client_token %>',
         container: '#dropin-container',
         locale: 'zh_TW'
       }, function (createErr, instance) {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+
           instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
-            // Submit payload.nonce to your server
+  	    nonce_field.value = payload.nonce;
+            console.log(form);
+            form.submit()
         });
       });
     });

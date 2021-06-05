@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     collection do
       get :pricing
       get :payment
+      post :pay
     end
   end
 

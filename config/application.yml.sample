@@ -1,0 +1,6 @@
+price_vip: "latest-vip-price"
+price_platinum: "latest-platinum-price"
+
+braintree_merchant_id: 'your-merchant-id'
+braintree_public_key: 'your-public-key'
+braintree_private_key: 'your-private-key'

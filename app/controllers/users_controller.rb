@@ -13,6 +13,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def pay
+    fee = ENV["price_#{params[:type]}"]
+    nonce = params[:payment_nonce]
+    result = gateway.transaction.sale(
+      amount: fee,
+      payment_method_nonce: nonce,
+      options: {submit_for_settlement: true
+    })
+    if result.success?
+      current_user.send("#{params[:type]}_user!")
+      redirect_to root_path, notice: '交易成功'
+    else
+      redirect_to root_path, notice: '交易未完成'
+    end
+  end
+
   private
   def gateway
     Braintree::Gateway.new(
